@@ -9,5 +9,5 @@ import Foundation
 
 struct K {
     static let APIKey = "fdde1a35e8724a1fa78d13ff63a9c1ef"
-    
+    static let defaultCountry = "us"
 }

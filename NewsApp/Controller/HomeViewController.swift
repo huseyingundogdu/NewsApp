@@ -11,7 +11,7 @@ import Alamofire
 
 class HomeViewController: UIViewController {
 
-    
+    @IBOutlet weak var countryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var articles: [Article]?
@@ -23,12 +23,37 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         registerTableViewCells()
         
-        getNews()
+        setCountryButton()
+        getNews(byCountry: K.defaultCountry)
 
     }
+
+    func setCountryButton() {
+        let countryArr = ["us", "pl", "tr"]
+        
+        var optionsArray: [UIAction] = []
+        
+        let optionClosure = {(action: UIAction) in
+            self.getNews(byCountry: action.title)
+        }
+        
+        for country in countryArr {
+            let action = UIAction(title: country, state: .off, handler: optionClosure)
+            optionsArray.append(action)
+        }
+        
+        optionsArray[0].state = .on
+        
+        let optionsMenu = UIMenu(title: "Country", options: .displayInline, children: optionsArray)
+        
+        countryButton.menu = optionsMenu
+        countryButton.changesSelectionAsPrimaryAction = true
+        countryButton.showsMenuAsPrimaryAction = true
+        
+    }
     
-    func getNews() {
-        AF.request("https://newsapi.org/v2/top-headlines?country=us&apiKey=\(K.APIKey)").responseDecodable(of: News.self) { response in
+    func getNews(byCountry: String) {
+        AF.request("https://newsapi.org/v2/top-headlines?country=\(byCountry)&apiKey=\(K.APIKey)").responseDecodable(of: News.self) { response in
             
             switch response.result {
             case .success(let news):

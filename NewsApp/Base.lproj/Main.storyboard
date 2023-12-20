@@ -40,8 +40,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" largeTitleDisplayMode="always" id="hhL-Ra-feN"/>
+                    <navigationItem key="navigationItem" title="Home" largeTitleDisplayMode="always" id="hhL-Ra-feN">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="fjd-3Q-vLo">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="tGf-bG-DJr">
+                                <rect key="frame" x="290" y="4.6666666666666679" width="87" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="countryButton" destination="tGf-bG-DJr" id="3jf-Sc-f81"/>
                         <outlet property="tableView" destination="aqP-pC-xzs" id="N8y-RF-tMX"/>
                     </connections>
                 </viewController>
