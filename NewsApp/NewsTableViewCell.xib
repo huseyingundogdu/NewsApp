@@ -18,7 +18,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="National security trial begins for Jimmy Lai, Hong Kong's pro-democracy media mogul - ABC News" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9K3-Kn-Fgg">
                         <rect key="frame" x="6" y="8" width="381" height="68"/>
-                        <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="19"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -28,7 +28,7 @@
                             <constraint firstAttribute="width" constant="190" id="19F-wt-ZlJ"/>
                             <constraint firstAttribute="height" constant="150" id="krj-zl-LmH"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="15"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
