@@ -18,9 +18,10 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         tableView.dataSource = self
         tableView.delegate = self
+        
         registerTableViewCells()
         
         setCountryButton()
@@ -53,7 +54,7 @@ class HomeViewController: UIViewController {
     }
     
     func getNews(byCountry: String) {
-        AF.request("https://newsapi.org/v2/top-headlines?country=\(byCountry)&apiKey=\(K.APIKey)").responseDecodable(of: News.self) { response in
+        AF.request("https://newsapi.org/v2/top-headlines?country=\(byCountry)&pageSize=25&apiKey=\(K.APIKey)").responseDecodable(of: News.self) { response in
             
             switch response.result {
             case .success(let news):
@@ -71,6 +72,7 @@ class HomeViewController: UIViewController {
     }
     
 }
+
 
 extension HomeViewController: UITableViewDelegate {
     
@@ -91,7 +93,22 @@ extension HomeViewController: UITableViewDataSource {
                 cell.descriptionLabel.text = article.description
                 
                 //TODO: cell.newsImage.image
-                cell.newsImage.image = UIImage(named: "placeholderImage")
+                //cell.newsImage.image = UIImage(named: "placeholderImage")
+                
+                if let imageUrl = article.urlToImage {
+                    
+                    AF.request(imageUrl).response { response in
+                        switch response.result {
+                        case .success(let imageData):
+                            if let data = imageData {
+                                cell.newsImage.image = UIImage(data: data)
+                            }
+                        case .failure(let error):
+                            cell.newsImage.image = UIImage(named: "placeholderImage")
+                        }
+                    }
+                    
+                }
             
             return cell
         }
