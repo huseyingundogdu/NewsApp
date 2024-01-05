@@ -19,6 +19,8 @@
 		1D783AF72B31D6FD00AF4362 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D783AF52B31D6FD00AF4362 /* NewsTableViewCell.swift */; };
 		1D783AF82B31D6FD00AF4362 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D783AF62B31D6FD00AF4362 /* NewsTableViewCell.xib */; };
 		1D783AFB2B331AA100AF4362 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D783AFA2B331AA100AF4362 /* ExploreViewController.swift */; };
+		1DD691802B46E9AE002D76A1 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD6917F2B46E9AE002D76A1 /* SavedViewController.swift */; };
+		1DD691822B46EA5B002D76A1 /* SavedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD691812B46EA5B002D76A1 /* SavedTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		1D783AF52B31D6FD00AF4362 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		1D783AF62B31D6FD00AF4362 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		1D783AFA2B331AA100AF4362 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		1DD6917F2B46E9AE002D76A1 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
+		1DD691812B46EA5B002D76A1 /* SavedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 			children = (
 				1D783ADC2B2DE40500AF4362 /* HomeViewController.swift */,
 				1D783AFA2B331AA100AF4362 /* ExploreViewController.swift */,
+				1DD6917F2B46E9AE002D76A1 /* SavedViewController.swift */,
+				1DD691812B46EA5B002D76A1 /* SavedTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,12 +192,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DD691822B46EA5B002D76A1 /* SavedTableViewController.swift in Sources */,
 				1D783ADD2B2DE40500AF4362 /* HomeViewController.swift in Sources */,
 				1D783AD92B2DE40500AF4362 /* AppDelegate.swift in Sources */,
 				1D783AF72B31D6FD00AF4362 /* NewsTableViewCell.swift in Sources */,
 				1D783ADB2B2DE40500AF4362 /* SceneDelegate.swift in Sources */,
 				1D783AF12B31CD2A00AF4362 /* News.swift in Sources */,
 				1D783AFB2B331AA100AF4362 /* ExploreViewController.swift in Sources */,
+				1DD691802B46E9AE002D76A1 /* SavedViewController.swift in Sources */,
 				1D783AEF2B2E020C00AF4362 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
