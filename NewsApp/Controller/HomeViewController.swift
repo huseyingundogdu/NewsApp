@@ -7,14 +7,15 @@
 
 import UIKit
 import Alamofire
+import SafariServices
 
-
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, SFSafariViewControllerDelegate {
 
     @IBOutlet weak var countryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var articles: [Article]?
+    var articles = [Article]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,45 +76,55 @@ class HomeViewController: UIViewController {
 
 
 extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //performSegue(withIdentifier: K.Segues.toTheSingleNews, sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let url = URL(string: articles[indexPath.row].url) else {
+            return
+        }
+        
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.delegate = self
+        present(safariVC, animated: true)
+
+    }
     
+
 }
 
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles?.count ?? 0
+        return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsTableViewCell
             
-            if let article = articles?[indexPath.row] {
+            let article = articles[indexPath.row]
                 
-                cell.titleLabel.text = article.title
-                cell.descriptionLabel.text = article.description
+            cell.titleLabel.text = article.title
+            cell.descriptionLabel.text = article.description
                 
-                //TODO: cell.newsImage.image
-                //cell.newsImage.image = UIImage(named: "placeholderImage")
+            //TODO: cell.newsImage.image
+            //cell.newsImage.image = UIImage(named: "placeholderImage")
                 
-                if let imageUrl = article.urlToImage {
-                    
-                    AF.request(imageUrl).response { response in
-                        switch response.result {
-                        case .success(let imageData):
-                            if let data = imageData {
-                                cell.newsImage.image = UIImage(data: data)
-                            }
-                        case .failure(let error):
-                            cell.newsImage.image = UIImage(named: "placeholderImage")
+            if let imageUrl = article.urlToImage {
+                
+                AF.request(imageUrl).response { response in
+                    switch response.result {
+                    case .success(let imageData):
+                        if let data = imageData {
+                            cell.newsImage.image = UIImage(data: data)
                         }
+                    case .failure(let error):
+                        cell.newsImage.image = UIImage(named: "placeholderImage")
                     }
-                    
                 }
+                    
+            }
             
             return cell
-        }
-        
-        return UITableViewCell()
     }
     
     
