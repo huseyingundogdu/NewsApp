@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SafariServices
+import RealmSwift
 
 class HomeViewController: UIViewController, SFSafariViewControllerDelegate {
 
@@ -19,6 +20,8 @@ class HomeViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -100,33 +103,41 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsTableViewCell
+        
+        let article = articles[indexPath.row]
+        
+        cell.titleLabel.text = article.title
+        cell.descriptionLabel.text = article.description
+        
+        //TODO: cell.newsImage.image
+        //cell.newsImage.image = UIImage(named: "placeholderImage")
+        
+        if let imageUrl = article.urlToImage {
             
-            let article = articles[indexPath.row]
-                
-            cell.titleLabel.text = article.title
-            cell.descriptionLabel.text = article.description
-                
-            //TODO: cell.newsImage.image
-            //cell.newsImage.image = UIImage(named: "placeholderImage")
-                
-            if let imageUrl = article.urlToImage {
-                
-                AF.request(imageUrl).response { response in
-                    switch response.result {
-                    case .success(let imageData):
-                        if let data = imageData {
-                            cell.newsImage.image = UIImage(data: data)
-                        }
-                    case .failure(let error):
-                        cell.newsImage.image = UIImage(named: "placeholderImage")
+            AF.request(imageUrl).response { response in
+                switch response.result {
+                case .success(let imageData):
+                    if let data = imageData {
+                        cell.newsImage.image = UIImage(data: data)
                     }
+                case .failure(let error):
+                    print("Request failed: \(error)")
+                    cell.newsImage.image = UIImage(named: "placeholderImage")
                 }
-                    
             }
             
-            return cell
+        }
+        
+        cell.shareButtonFnc = {[unowned self] in
+            let activityController = UIActivityViewController(activityItems: [article.url], applicationActivities: nil)
+            present(activityController, animated: true)
+        }
+        
+        cell.saveButtonFnc = {[unowned self] in
+            cell.saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        }
+        
+        return cell
     }
-    
-    
 }
 

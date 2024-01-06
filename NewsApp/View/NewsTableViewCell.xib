@@ -60,12 +60,18 @@
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                                <connections>
+                                    <action selector="shareButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KYf-Oj-490"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyM-5V-wVW">
                                 <rect key="frame" x="336.66666666666669" y="0.0" width="46.333333333333314" height="34.333333333333336"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system"/>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Swz-7m-fVl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor"/>
@@ -88,6 +94,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="hKs-oN-LGB" id="Fcv-fj-aEU"/>
                 <outlet property="newsImage" destination="uD0-e2-jdN" id="tVL-kd-yVJ"/>
+                <outlet property="saveButton" destination="MyM-5V-wVW" id="fSL-bv-LnL"/>
                 <outlet property="titleLabel" destination="9K3-Kn-Fgg" id="ZSD-Ue-73j"/>
             </connections>
             <point key="canvasLocation" x="-170.22900763358777" y="92.253521126760575"/>

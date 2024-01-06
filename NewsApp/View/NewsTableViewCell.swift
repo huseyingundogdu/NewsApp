@@ -12,6 +12,10 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var newsImage: UIImageView!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var shareButtonFnc: (() -> ())?
+    var saveButtonFnc: (() -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +26,16 @@ class NewsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @IBAction func shareButtonClicked(_ sender: Any) {
+        shareButtonFnc?()
+    }
+    @IBAction func saveButtonClicked(_ sender: Any) {
+        saveButtonFnc?()
+    }
+    
+    override func prepareForReuse() {
+        
     }
     
 }
